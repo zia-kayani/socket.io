@@ -18,6 +18,10 @@ export default function App() {
 
     socket.on("wellcome", (s) => { console.log(s) })
 
+    socket.on("recieved-message", (data)=>{
+      console.log(data)
+    })
+
     return () => {
       socket.disconnect()
     }

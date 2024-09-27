@@ -35,6 +35,7 @@ app.get("/", (req, res) => {
 
     socket.on("message", (data)=>{
         console.log(data)
+        socket.broadcast.emit("recieved-message" , data)
     })
 
     socket.on('disconnect', ()=>{

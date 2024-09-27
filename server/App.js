@@ -33,9 +33,10 @@ app.get("/", (req, res) => {
     // socket.emit("wellcome", `wellcome to the server ${socket.id}`)
     // socket.broadcast.emit("wellcome", `user has joined the server with id  ${socket.id}`)
 
-    socket.on("message", (data)=>{
-        console.log(data)
-        socket.broadcast.emit("recieved-message" , data)
+    socket.on("message", ({room, message})=>{
+        console.log(message)
+        // socket.broadcast.emit("recieved-message" , data)
+        io.to(room).emit("recieved-message", message)
     })
 
     socket.on('disconnect', ()=>{
